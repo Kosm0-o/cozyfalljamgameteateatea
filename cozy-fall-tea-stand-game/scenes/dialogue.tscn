@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqciuxfcaqe3s"]
+
+[ext_resource type="Script" uid="uid://df7pqujtj8lfn" path="res://scripts/dialogue.gd" id="1_jwyou"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lnu2h"]
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+
+[node name="dialogue" type="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_jwyou")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = 2
+layout_mode = 0
+offset_left = -222.0
+offset_top = -402.0
+offset_right = 212.0
+offset_bottom = -159.0
+
+[node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_right = 435.0
+offset_bottom = 242.0
+text = "freddy fazbeah"
+label_settings = SubResource("LabelSettings_lnu2h")
+autowrap_mode = 3

@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://ckwdyc5jnbkj4"]
+
+[ext_resource type="Script" uid="uid://b77qfmxtmtora" path="res://scripts/ingredientbtn.gd" id="1_7kqrq"]
+
+[node name="btn" type="Button"]
+custom_minimum_size = Vector2(100, 100)
+focus_mode = 0
+script = ExtResource("1_7kqrq")
+type = 1
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

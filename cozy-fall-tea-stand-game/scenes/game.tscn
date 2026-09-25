@@ -1,0 +1,96 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbo84361glmlt"]
+
+[ext_resource type="Script" uid="uid://kwsg16jkuwcx" path="res://scripts/gamemanager.gd" id="1_yqjtg"]
+[ext_resource type="Script" uid="uid://clfbx4fv72lm2" path="res://scripts/teacup.gd" id="2_lnu2h"]
+[ext_resource type="PackedScene" uid="uid://ckwdyc5jnbkj4" path="res://scenes/ingredientsbtn.tscn" id="2_yqjtg"]
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_yqjtg")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(576, 648)
+
+[node name="maincontrol" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="teastand" type="Control" parent="maincontrol"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="maincontrol/teastand"]
+layout_mode = 0
+offset_right = 47.0
+offset_bottom = 648.0
+color = Color(1, 0.773009, 0.607674, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="maincontrol/teastand"]
+layout_mode = 0
+offset_right = 1150.0
+offset_bottom = 118.0
+color = Color(1, 0.773009, 0.607674, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="maincontrol/teastand"]
+layout_mode = 0
+offset_left = 1105.0
+offset_right = 1150.0
+offset_bottom = 650.0
+color = Color(1, 0.773009, 0.607674, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="maincontrol/teastand"]
+layout_mode = 0
+offset_top = 581.0
+offset_right = 1150.0
+offset_bottom = 979.0
+color = Color(1, 0.773009, 0.607674, 1)
+
+[node name="teacup" type="ColorRect" parent="maincontrol"]
+layout_mode = 0
+offset_left = 528.0
+offset_top = 531.0
+offset_right = 628.0
+offset_bottom = 651.0
+mouse_filter = 2
+color = Color(0.446269, 0.194726, 9.62615e-08, 1)
+
+[node name="btn" type="Button" parent="maincontrol/teacup"]
+layout_mode = 0
+offset_right = 104.0
+offset_bottom = 121.0
+focus_mode = 0
+flat = true
+script = ExtResource("2_lnu2h")
+
+[node name="ingredients" type="Control" parent="maincontrol"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="org" type="GridContainer" parent="maincontrol/ingredients"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 680.0
+offset_right = 1108.0
+offset_bottom = 956.0
+theme_override_constants/h_separation = 380
+theme_override_constants/v_separation = 75
+columns = 3
+
+[node name="btn" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
+layout_mode = 2
+
+[node name="btn2" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
+layout_mode = 2
+type = 2
+
+[node name="btn3" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
+layout_mode = 2
+type = 3
+
+[connection signal="pressed" from="maincontrol/teacup/btn" to="maincontrol/teacup/btn" method="_on_pressed"]

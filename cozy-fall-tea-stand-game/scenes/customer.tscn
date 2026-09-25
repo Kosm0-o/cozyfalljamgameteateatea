@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://d10llg4717sfn"]
+
+[ext_resource type="Script" uid="uid://bfeq08hprp871" path="res://scripts/customer.gd" id="1_8qg4y"]
+[ext_resource type="Texture2D" uid="uid://oiw6y3sf3voo" path="res://icon.svg" id="2_rjbu2"]
+[ext_resource type="PackedScene" uid="uid://bqciuxfcaqe3s" path="res://scenes/dialogue.tscn" id="3_8qg4y"]
+
+[node name="customer" type="Node2D"]
+script = ExtResource("1_8qg4y")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1, 2.34375)
+texture = ExtResource("2_rjbu2")
+
+[node name="dialogue" parent="." instance=ExtResource("3_8qg4y")]
