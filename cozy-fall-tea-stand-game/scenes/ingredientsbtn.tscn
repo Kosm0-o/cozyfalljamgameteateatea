@@ -6,6 +6,5 @@
 custom_minimum_size = Vector2(100, 100)
 focus_mode = 0
 script = ExtResource("1_7kqrq")
-type = 1
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]
