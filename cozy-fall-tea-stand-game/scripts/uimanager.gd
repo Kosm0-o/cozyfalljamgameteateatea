@@ -15,6 +15,7 @@ func increase_money_text(val : int):
 
 
 func _on_shoptabs_tab_changed(tab: int) -> void:
+	current_shop_tab = tab
 	refresh_shop_items.emit(tab)
 	$shop/org.size.x = 0.0
 	$shop/org.position.x = ($shop.size.x - $shop/org.size.x) / 2

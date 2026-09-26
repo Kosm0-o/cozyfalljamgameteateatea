@@ -35,6 +35,7 @@ func _on_pressed() -> void:
 		ui.money_tween(-cost)
 		hide()
 		bought[ui.current_shop_tab] = true
+		print("shoptab: ", ui.current_shop_tab, " bought: ", bought)
 		global.unlocked_ingredients.append(ingredient)
 
 func _refresh(tab_num : int):

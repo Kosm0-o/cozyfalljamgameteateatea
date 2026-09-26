@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bbo84361glmlt"]
+[gd_scene load_steps=18 format=3 uid="uid://bbo84361glmlt"]
 
 [ext_resource type="Script" uid="uid://kwsg16jkuwcx" path="res://scripts/gamemanager.gd" id="1_yqjtg"]
 [ext_resource type="Shader" uid="uid://dpifxr32m6nnq" path="res://scripts/shaders/outline.gdshader" id="2_iywne"]
@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://rxpjblg8hx7" path="res://scripts/uimanager.gd" id="7_gee14"]
 [ext_resource type="FontFile" uid="uid://cy670lf2kfexg" path="res://assets/ScribbleSquad-gw02q.ttf" id="7_u5sy4"]
 [ext_resource type="Script" uid="uid://ca16ah3wtecyv" path="res://scripts/shopbtn.gd" id="9_0tnpc"]
+[ext_resource type="Texture2D" uid="uid://dhd5i8b0fecdm" path="res://assets/Tree 1.svg" id="10_vtaks"]
+[ext_resource type="Texture2D" uid="uid://cjfj1tr6m4nyu" path="res://assets/Tree 2.svg" id="11_kvpfn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 shader = ExtResource("2_iywne")
@@ -39,6 +41,15 @@ _data = {
 }
 point_count = 11
 
+[sub_resource type="Gradient" id="Gradient_vtaks"]
+offsets = PackedFloat32Array(0, 0.616883, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_kvpfn"]
+gradient = SubResource("Gradient_vtaks")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
 
@@ -53,31 +64,37 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="teastand" type="Control" parent="maincontrol"]
+light_mask = 0
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="ColorRect" type="ColorRect" parent="maincontrol/teastand"]
+light_mask = 0
 layout_mode = 0
 offset_right = 47.0
 offset_bottom = 648.0
 color = Color(1, 0.773009, 0.607674, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="maincontrol/teastand"]
+light_mask = 0
 layout_mode = 0
+offset_top = -86.0
 offset_right = 1150.0
-offset_bottom = 118.0
+offset_bottom = 30.0
 color = Color(1, 0.773009, 0.607674, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="maincontrol/teastand"]
+light_mask = 0
 layout_mode = 0
 offset_left = 1105.0
-offset_right = 1150.0
+offset_right = 1155.0
 offset_bottom = 650.0
 color = Color(1, 0.773009, 0.607674, 1)
 
 [node name="ColorRect4" type="ColorRect" parent="maincontrol/teastand"]
+light_mask = 0
 layout_mode = 0
 offset_top = 581.0
 offset_right = 1150.0
@@ -271,6 +288,7 @@ theme_override_font_sizes/font_size = 51
 text = "X"
 
 [node name="sunpath" type="Path2D" parent="."]
+position = Vector2(0, -78)
 curve = SubResource("Curve2D_u5sy4")
 
 [node name="sunpos" type="PathFollow2D" parent="sunpath"]
@@ -283,6 +301,45 @@ offset_top = -130.532
 offset_right = 181.892
 offset_bottom = 67.4683
 color = Color(1, 0.827451, 0, 1)
+
+[node name="PointLight2D" type="PointLight2D" parent="sunpath/sunpos/sun"]
+position = Vector2(98.9762, 100.12)
+scale = Vector2(3.01466, 3.10071)
+energy = 0.6
+texture = SubResource("GradientTexture2D_kvpfn")
+texture_scale = 13.76
+
+[node name="bg" type="Parallax2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="bg"]
+position = Vector2(129, 365.626)
+scale = Vector2(3.02577, 3.02577)
+texture = ExtResource("10_vtaks")
+
+[node name="Sprite2D3" type="Sprite2D" parent="bg"]
+position = Vector2(529, 397.626)
+scale = Vector2(3.481, 3.481)
+texture = ExtResource("11_kvpfn")
+
+[node name="Sprite2D5" type="Sprite2D" parent="bg"]
+position = Vector2(874, 369.626)
+scale = Vector2(3.02577, 3.02577)
+texture = ExtResource("10_vtaks")
+
+[node name="Sprite2D6" type="Sprite2D" parent="bg"]
+position = Vector2(999, 469.626)
+scale = Vector2(3.02577, 3.02577)
+texture = ExtResource("11_kvpfn")
+
+[node name="Sprite2D2" type="Sprite2D" parent="bg"]
+position = Vector2(333, 461.626)
+scale = Vector2(3.02577, 3.02577)
+texture = ExtResource("10_vtaks")
+
+[node name="Sprite2D4" type="Sprite2D" parent="bg"]
+position = Vector2(745, 464.626)
+scale = Vector2(3.02577, 3.02577)
+texture = ExtResource("10_vtaks")
 
 [connection signal="pressed" from="maincontrol/teacup/btn" to="maincontrol/teacup/btn" method="_on_pressed"]
 [connection signal="pressed" from="maincontrol/sendbtn" to="maincontrol/sendbtn" method="_on_pressed"]

@@ -90,5 +90,7 @@ func end_day():
 	$sunpath/sunpos.progress_ratio = 0.0
 
 func _start_day():
+	for btn in $maincontrol/ingredients/org.get_children():
+		btn._refresh()
 	create_new_customer()
 	next_customer.emit()

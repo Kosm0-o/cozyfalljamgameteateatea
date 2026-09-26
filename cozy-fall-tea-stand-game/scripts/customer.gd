@@ -9,6 +9,14 @@ var dialogue : String = "Hi mah name is freddy fazbeah"
 var typical_dialogue : String = "Thank you for the tea!"
 var secret_dialogue : String = "This reminds me of bonnie"
 var desired_ingredients : Array = []
+var stats : Dictionary = {
+	"name": "",
+	"personality": "",
+	"job": "",
+	"hobby": "",
+	"speaking": "",
+	"background": ""
+}
 
 func _ready() -> void:
 	d.dialogue_finished.connect(func(times): dialogue_finished.emit(times))
