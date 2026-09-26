@@ -1,9 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://bbo84361glmlt"]
+[gd_scene load_steps=8 format=3 uid="uid://bbo84361glmlt"]
 
 [ext_resource type="Script" uid="uid://kwsg16jkuwcx" path="res://scripts/gamemanager.gd" id="1_yqjtg"]
+[ext_resource type="Shader" uid="uid://dpifxr32m6nnq" path="res://scripts/shaders/outline.gdshader" id="2_iywne"]
 [ext_resource type="Texture2D" uid="uid://cvoy0gfdevwre" path="res://assets/Coffee Cup.svg" id="2_lbhrr"]
 [ext_resource type="Script" uid="uid://clfbx4fv72lm2" path="res://scripts/teacup.gd" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ckwdyc5jnbkj4" path="res://scenes/ingredientsbtn.tscn" id="2_yqjtg"]
+[ext_resource type="Script" uid="uid://bfolev5wc74ni" path="res://scripts/sendbtn.gd" id="6_p57ef"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
+shader = ExtResource("2_iywne")
+shader_parameter/shader_enabled = false
+shader_parameter/thickness = 4.0
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.993747, 0.837813, 3.85046e-07, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/max_or_add = false
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -51,6 +66,7 @@ offset_bottom = 979.0
 color = Color(1, 0.773009, 0.607674, 1)
 
 [node name="teacup" type="Sprite2D" parent="maincontrol"]
+material = SubResource("ShaderMaterial_p57ef")
 position = Vector2(583, 589)
 texture = ExtResource("2_lbhrr")
 
@@ -88,4 +104,16 @@ layout_mode = 2
 [node name="btn3" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
 layout_mode = 2
 
+[node name="sendbtn" type="Button" parent="maincontrol"]
+visible = false
+layout_mode = 0
+offset_left = 999.0
+offset_top = 485.0
+offset_right = 1096.0
+offset_bottom = 572.0
+focus_mode = 0
+text = "Send"
+script = ExtResource("6_p57ef")
+
 [connection signal="pressed" from="maincontrol/teacup/btn" to="maincontrol/teacup/btn" method="_on_pressed"]
+[connection signal="pressed" from="maincontrol/sendbtn" to="maincontrol/sendbtn" method="_on_pressed"]
