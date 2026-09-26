@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bbo84361glmlt"]
+[gd_scene load_steps=14 format=3 uid="uid://bbo84361glmlt"]
 
 [ext_resource type="Script" uid="uid://kwsg16jkuwcx" path="res://scripts/gamemanager.gd" id="1_yqjtg"]
 [ext_resource type="Shader" uid="uid://dpifxr32m6nnq" path="res://scripts/shaders/outline.gdshader" id="2_iywne"]
@@ -6,6 +6,9 @@
 [ext_resource type="Script" uid="uid://clfbx4fv72lm2" path="res://scripts/teacup.gd" id="2_lnu2h"]
 [ext_resource type="PackedScene" uid="uid://ckwdyc5jnbkj4" path="res://scenes/ingredientsbtn.tscn" id="2_yqjtg"]
 [ext_resource type="Script" uid="uid://bfolev5wc74ni" path="res://scripts/sendbtn.gd" id="6_p57ef"]
+[ext_resource type="Script" uid="uid://rxpjblg8hx7" path="res://scripts/uimanager.gd" id="7_gee14"]
+[ext_resource type="FontFile" uid="uid://cy670lf2kfexg" path="res://assets/ScribbleSquad-gw02q.ttf" id="7_u5sy4"]
+[ext_resource type="Script" uid="uid://ca16ah3wtecyv" path="res://scripts/shopbtn.gd" id="9_0tnpc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
 shader = ExtResource("2_iywne")
@@ -19,6 +22,22 @@ shader_parameter/aspect_ratio = 1.0
 shader_parameter/square_border = false
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/max_or_add = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_gee14"]
+font = ExtResource("7_u5sy4")
+font_size = 71
+font_color = Color(0, 0.760784, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_u5sy4"]
+font = ExtResource("7_u5sy4")
+font_size = 76
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_u5sy4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -415, 622, -90.6545, 41.6017, 90.6545, -41.6017, 97, 295, -78.857, 21.7322, 78.857, -21.7322, 349, 183, -50.2946, 6.83013, 50.2946, -6.83013, 507, 146, 0, 0, 0, 0, 622, 139, -40.3599, -4.34645, 40.3599, 4.34645, 707, 146, -40.3599, -12.4184, 40.3599, 12.4184, 772, 158, -36.6344, -16.144, 36.6344, 16.144, 933, 220, -76.3733, -27.9415, 76.3733, 27.9415, 1128, 296, -39.739, -29.8042, 39.739, 29.8042, 1375, 415, 0, 0, 0, 0, 1474, 504)
+}
+point_count = 11
 
 [node name="game" type="Node2D"]
 script = ExtResource("1_yqjtg")
@@ -104,6 +123,18 @@ layout_mode = 2
 [node name="btn3" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
 layout_mode = 2
 
+[node name="btn4" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
+visible = false
+layout_mode = 2
+
+[node name="btn5" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
+visible = false
+layout_mode = 2
+
+[node name="btn6" parent="maincontrol/ingredients/org" instance=ExtResource("2_yqjtg")]
+visible = false
+layout_mode = 2
+
 [node name="sendbtn" type="Button" parent="maincontrol"]
 visible = false
 layout_mode = 0
@@ -115,5 +146,148 @@ focus_mode = 0
 text = "Send"
 script = ExtResource("6_p57ef")
 
+[node name="ui" type="CanvasLayer" parent="."]
+script = ExtResource("7_gee14")
+
+[node name="money" type="Label" parent="ui"]
+offset_left = 34.0
+offset_top = 2.0
+offset_right = 1139.0
+offset_bottom = 106.0
+text = "$0"
+label_settings = SubResource("LabelSettings_gee14")
+horizontal_alignment = 2
+
+[node name="shop" type="ColorRect" parent="ui"]
+visible = false
+offset_left = 139.0
+offset_top = 69.0
+offset_right = 1015.0
+offset_bottom = 563.0
+
+[node name="Label" type="Label" parent="ui/shop"]
+layout_mode = 0
+offset_top = 1.0
+offset_right = 874.0
+offset_bottom = 106.0
+text = "End of Day!"
+label_settings = SubResource("LabelSettings_u5sy4")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="shoptabs" type="TabBar" parent="ui/shop"]
+layout_mode = 0
+offset_left = -67.0
+offset_top = 495.0
+offset_right = 424.0
+offset_bottom = 562.0
+rotation = -1.5708
+theme_override_font_sizes/font_size = 40
+current_tab = 2
+clip_tabs = false
+tab_count = 3
+tab_0/title = "Extras"
+tab_1/title = "Sweeteners"
+tab_2/title = "Teas"
+
+[node name="org" type="GridContainer" parent="ui/shop"]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 218.0
+offset_right = 738.0
+offset_bottom = 314.0
+theme_override_constants/h_separation = 85
+theme_override_constants/v_separation = 75
+columns = 3
+
+[node name="shopbtn" type="Button" parent="ui/shop/org"]
+custom_minimum_size = Vector2(0, 64.895)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 31
+text = "item 1
+cost: $10"
+script = ExtResource("9_0tnpc")
+
+[node name="shopbtn2" type="Button" parent="ui/shop/org"]
+custom_minimum_size = Vector2(0, 64.895)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 31
+text = "item 1
+cost: $10"
+script = ExtResource("9_0tnpc")
+item_datas = {
+"extra": {
+"cost": 35,
+"ingredient": 17,
+"name": "EXTRA5"
+},
+"sweetener": {
+"cost": 30,
+"ingredient": 11,
+"name": "SWEETENER5"
+},
+"tea": {
+"cost": 25,
+"ingredient": 5,
+"name": "TEA5"
+}
+}
+
+[node name="shopbtn3" type="Button" parent="ui/shop/org"]
+custom_minimum_size = Vector2(0, 64.895)
+layout_mode = 2
+focus_mode = 0
+theme_override_font_sizes/font_size = 31
+text = "item 1
+cost: $10"
+script = ExtResource("9_0tnpc")
+item_datas = {
+"extra": {
+"cost": 50,
+"ingredient": 18,
+"name": "EXTRA6"
+},
+"sweetener": {
+"cost": 45,
+"ingredient": 12,
+"name": "SWEETENER6"
+},
+"tea": {
+"cost": 40,
+"ingredient": 6,
+"name": "TEA6"
+}
+}
+
+[node name="X" type="Button" parent="ui/shop"]
+layout_mode = 0
+offset_left = 808.0
+offset_right = 876.0
+offset_bottom = 78.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 51
+text = "X"
+
+[node name="sunpath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_u5sy4")
+
+[node name="sunpos" type="PathFollow2D" parent="sunpath"]
+position = Vector2(-415, 622)
+rotation = -0.56837
+
+[node name="sun" type="ColorRect" parent="sunpath/sunpos"]
+offset_left = -16.1081
+offset_top = -130.532
+offset_right = 181.892
+offset_bottom = 67.4683
+color = Color(1, 0.827451, 0, 1)
+
 [connection signal="pressed" from="maincontrol/teacup/btn" to="maincontrol/teacup/btn" method="_on_pressed"]
 [connection signal="pressed" from="maincontrol/sendbtn" to="maincontrol/sendbtn" method="_on_pressed"]
+[connection signal="tab_changed" from="ui/shop/shoptabs" to="ui" method="_on_shoptabs_tab_changed"]
+[connection signal="pressed" from="ui/shop/org/shopbtn" to="ui/shop/org/shopbtn" method="_on_pressed"]
+[connection signal="pressed" from="ui/shop/org/shopbtn2" to="ui/shop/org/shopbtn2" method="_on_pressed"]
+[connection signal="pressed" from="ui/shop/org/shopbtn3" to="ui/shop/org/shopbtn3" method="_on_pressed"]
+[connection signal="pressed" from="ui/shop/X" to="ui" method="_on_x_pressed"]

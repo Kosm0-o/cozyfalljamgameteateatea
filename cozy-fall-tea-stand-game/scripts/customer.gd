@@ -14,9 +14,13 @@ func _ready() -> void:
 	d.dialogue_finished.connect(func(times): dialogue_finished.emit(times))
 	for i in range(3):
 		var possible : Array = []
-		var all : Array = global.INGREDIENTS.values()
-		for j in range(3):
-			possible.append(i * 3 + j + 1)
+		if i == 0:
+			for val in global.unlocked_ingredients:
+				if val <= 6:
+					possible.append(val)
+		else:
+			for j in range(6):
+				possible.append(i * 6 + j + 1)
 		desired_ingredients.append(
 			possible.pick_random()
 		)

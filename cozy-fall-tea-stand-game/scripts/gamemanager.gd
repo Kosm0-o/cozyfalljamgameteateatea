@@ -8,16 +8,20 @@ signal camera_move()
 @onready var cupbtn: Button = $maincontrol/teacup/btn
 
 var correct_ingredients : int = 0
+var customers_served : int = 0
+var customers_per_day : int = 3
 
 
 func _ready() -> void:
 	global.send_tea.connect(_send_tea)
+	$ui.start_new_day.connect(_start_day)
 	next_customer.connect(func(): cupbtn.ingredients.clear())
-	create_new_customer()
-	next_customer.emit()
+	_start_day()
 	camera_tween(true)
-	
 
+func _process(delta: float) -> void:
+	$sunpath/sunpos.progress_ratio = lerpf($sunpath/sunpos.progress_ratio, float(customers_served) / float(customers_per_day), 2 * delta)
+	
 func create_new_customer():
 	var customer = preload("res://scenes/customer.tscn").instantiate()
 	add_child(customer)
@@ -46,13 +50,16 @@ func _send_tea():
 	teacup.hide()
 	teacup.global_position = Vector2(-326.0, 589.0)
 	await send_off_customer()
+	customers_served += 1
 	teacup.show()
 	var tween2 = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween2.tween_interval(0.1)
 	tween2.tween_property(teacup, "global_position:x", 583.0, 0.7)
 	await tween2.finished
-	create_new_customer()
-	next_customer.emit()
+	if customers_served == customers_per_day:
+		end_day()
+	else:
+		_start_day()
 
 func send_off_customer():
 	var tween = create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -71,4 +78,17 @@ func check_ingredients():
 		global.current_customer.secret_dialogue if correct_ingredients == 3 else global.current_customer.typical_dialogue
 	)
 	await global.current_customer.dialogue_finished
-	
+	var payment = (randi_range(1, 3) + correct_ingredients) * correct_ingredients
+	payment = payment if payment > 0 else randi_range(1, 2)
+	$ui.money_tween(payment)
+
+
+func end_day():
+	$ui/shop.show()
+	customers_per_day += randi_range(1, 2)
+	customers_served = 0
+	$sunpath/sunpos.progress_ratio = 0.0
+
+func _start_day():
+	create_new_customer()
+	next_customer.emit()
