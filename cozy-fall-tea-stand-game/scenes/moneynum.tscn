@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bstev2qt7gukc"]
+
+[ext_resource type="FontFile" uid="uid://dowo7sjd80ukq" path="res://assets/MotleyForcesRegular-w1rZ3.ttf" id="1_hbx7b"]
+[ext_resource type="Script" uid="uid://f7bgmos5ql5e" path="res://scripts/moneynum.gd" id="2_0crgf"]
+[ext_resource type="AudioStream" uid="uid://ccxgpdrdtgm1q" path="res://sounds/dragon-studio-cash-register-kaching-376867.mp3" id="3_0crgf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jbtuo"]
+font = ExtResource("1_hbx7b")
+font_size = 51
+font_color = Color(0, 0.760784, 0, 1)
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="moneynum" type="Label"]
+z_index = 4
+offset_left = 422.0
+offset_top = 167.0
+offset_right = 522.0
+offset_bottom = 209.0
+pivot_offset = Vector2(48.44, 19.47)
+text = "+$10"
+label_settings = SubResource("LabelSettings_jbtuo")
+script = ExtResource("2_0crgf")
+
+[node name="sfx" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_0crgf")
+volume_db = -14.054
+pitch_scale = 1.39
+autoplay = true

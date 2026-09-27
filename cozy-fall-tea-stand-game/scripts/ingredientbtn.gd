@@ -2,13 +2,49 @@ extends Button
 
 var type = global.INGREDIENTS.NONE
 
+var textures : Array = [
+	preload("res://assets/Matcha Bag.svg"),
+	preload("res://assets/Chamomile Bag.svg"),
+	preload("res://assets/Oolong Bag.svg"),
+	preload("res://assets/Hibiscus Bag.svg"),
+	preload("res://assets/Chai Bag.svg"),
+	preload("res://assets/Earl Grey Bag.svg"),
+	preload("res://assets/Sugar.svg"),
+	preload("res://assets/Honey.svg"),
+	preload("res://assets/Maple Syrup (3).svg"),
+	preload("res://assets/Agave Nectar.svg"),
+	preload("res://assets/Molasses.svg"),
+	preload("res://assets/Apple Juice.svg"),
+	preload("res://assets/Lemon.svg"),
+	preload("res://assets/Milk (2).svg"),
+	preload("res://assets/Cinnamon.svg"),
+	preload("res://assets/mint.svg"),
+	preload("res://assets/Ginger.svg"),
+	preload("res://assets/Cucumber.svg")
+]
+
+var checked : bool = false
 
 func _ready() -> void:
 	global.next_type.connect(_refresh)
+	material = material.duplicate()
+	mouse_entered.connect(highlight.bind(true))
+	mouse_exited.connect(highlight.bind(false))
 	_refresh()
 
 func _on_pressed() -> void:
 	global.current_ingredient = type
+
+func _process(delta: float) -> void:
+	if global.current_ingredient == type:
+		material.set_shader_parameter("shader_enabled", true)
+		checked = false
+	elif global.current_ingredient != type and not checked:
+		material.set_shader_parameter("shader_enabled", false)
+		checked = true
+
+func highlight(outline : bool):
+	material.set_shader_parameter("shader_enabled", outline)
 
 func set_type(ingredients_of_type : Array):
 	if "6" in name:
@@ -35,35 +71,53 @@ func set_type(ingredients_of_type : Array):
 		type = ingredients_of_type[1]
 	else:
 		type = ingredients_of_type[0]
-	
-	text = global.INGREDIENTS.keys()[type]
+	var num = int(str(name)[3]) + global.current_type * 6
+	if num <= textures.size():
+		icon = textures[num - 1]
+		text = ""
+		flat = true
+	else:
+		text = global.INGREDIENTS.keys()[type]
+		icon = null
+		flat = false
 
 func _refresh():
+	await get_tree().create_timer(0.35).timeout
 	match global.current_type:
 		global.TYPES.TEA:
 			set_type([
-				global.INGREDIENTS.TEA1,
-				global.INGREDIENTS.TEA2,
-				global.INGREDIENTS.TEA3,
-				global.INGREDIENTS.TEA4,
-				global.INGREDIENTS.TEA5,
-				global.INGREDIENTS.TEA6
+				global.INGREDIENTS.MATCHA,
+				global.INGREDIENTS.CHAMOMILE,
+				global.INGREDIENTS.OOLONG,
+				global.INGREDIENTS.HIBISCUS,
+				global.INGREDIENTS.CHAI,
+				global.INGREDIENTS.EARLGREY
 			])
 		global.TYPES.SWEETENER:
 			set_type([
-				global.INGREDIENTS.SWEETENER1,
-				global.INGREDIENTS.SWEETENER2,
-				global.INGREDIENTS.SWEETENER3,
-				global.INGREDIENTS.SWEETENER4,
-				global.INGREDIENTS.SWEETENER5,
-				global.INGREDIENTS.SWEETENER6
+				global.INGREDIENTS.SUGAR,
+				global.INGREDIENTS.HONEY,
+				global.INGREDIENTS.MAPLESYRUP,
+				global.INGREDIENTS.AGAVENECTAR,
+				global.INGREDIENTS.MOLASSES,
+				global.INGREDIENTS.APPLEJUICE
 			])
 		global.TYPES.EXTRA:
 			set_type([
-				global.INGREDIENTS.EXTRA1,
-				global.INGREDIENTS.EXTRA2,
-				global.INGREDIENTS.EXTRA3,
-				global.INGREDIENTS.EXTRA4,
-				global.INGREDIENTS.EXTRA5,
-				global.INGREDIENTS.EXTRA6
+				global.INGREDIENTS.LEMON,
+				global.INGREDIENTS.MILK,
+				global.INGREDIENTS.CINNAMON,
+				global.INGREDIENTS.MINT,
+				global.INGREDIENTS.GINGER,
+				global.INGREDIENTS.CUCUMBER
 			])
+
+func _make_custom_tooltip(for_text: String) -> Object:
+	var tooltip = preload("res://scenes/customtooltip.tscn").instantiate()
+	var ing = global.INGREDIENTS.keys()[type]
+	tooltip.setup(
+		ing,
+		global.ingredient_descriptions[ing.to_lower()],
+		global.ingredient_colors[ing.to_lower()]
+	)
+	return tooltip

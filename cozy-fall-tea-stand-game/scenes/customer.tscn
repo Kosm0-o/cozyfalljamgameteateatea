@@ -1,14 +1,129 @@
-[gd_scene load_steps=4 format=3 uid="uid://d10llg4717sfn"]
+[gd_scene load_steps=16 format=3 uid="uid://d10llg4717sfn"]
 
 [ext_resource type="Script" uid="uid://bfeq08hprp871" path="res://scripts/customer.gd" id="1_8qg4y"]
-[ext_resource type="Texture2D" uid="uid://oiw6y3sf3voo" path="res://icon.svg" id="2_rjbu2"]
 [ext_resource type="PackedScene" uid="uid://bqciuxfcaqe3s" path="res://scenes/dialogue.tscn" id="3_8qg4y"]
+[ext_resource type="Texture2D" uid="uid://bmxkt2eujpq26" path="res://assets/Shirt Blue.svg" id="3_r88ql"]
+[ext_resource type="Texture2D" uid="uid://c56g65ndjfa53" path="res://assets/Shirt Green.svg" id="4_02a8g"]
+[ext_resource type="Texture2D" uid="uid://bem1r4lbh8r5b" path="res://assets/Shirt Purple.svg" id="5_0m07s"]
+[ext_resource type="Texture2D" uid="uid://dd3ng3g30l3a8" path="res://assets/Shirt Red.svg" id="6_y3ht7"]
+[ext_resource type="Texture2D" uid="uid://ccb4a58qdfvfc" path="res://assets/Shirt White.svg" id="7_lhulq"]
+[ext_resource type="Texture2D" uid="uid://ch8r2uxx0m6rh" path="res://assets/Boy 1.svg" id="8_dtihf"]
+[ext_resource type="Texture2D" uid="uid://424n3tnn4pn" path="res://assets/Boy 2.svg" id="9_nq38f"]
+[ext_resource type="Texture2D" uid="uid://ko05rkwk41tn" path="res://assets/Boy 3.svg" id="10_r60xk"]
+[ext_resource type="Texture2D" uid="uid://bt2niqdtql6hl" path="res://assets/Girl 1 (1).svg" id="11_a41mk"]
+[ext_resource type="Texture2D" uid="uid://mphfgp7fflv4" path="res://assets/Girl 2 (1).svg" id="12_h2vmb"]
+[ext_resource type="Texture2D" uid="uid://dhioap4ng8brh" path="res://assets/Girl 3 (1).svg" id="13_m3pka"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bi5pc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_r88ql")
+}],
+"loop": false,
+"name": &"1",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_02a8g")
+}],
+"loop": false,
+"name": &"2",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0m07s")
+}],
+"loop": false,
+"name": &"3",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_y3ht7")
+}],
+"loop": false,
+"name": &"4",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_lhulq")
+}],
+"loop": false,
+"name": &"5",
+"speed": 0.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s5t3x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_dtihf")
+}],
+"loop": false,
+"name": &"1",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_nq38f")
+}],
+"loop": false,
+"name": &"2",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_r60xk")
+}],
+"loop": false,
+"name": &"3",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_a41mk")
+}],
+"loop": false,
+"name": &"4",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12_h2vmb")
+}],
+"loop": false,
+"name": &"5",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_m3pka")
+}],
+"loop": false,
+"name": &"6",
+"speed": 0.0
+}]
 
 [node name="customer" type="Node2D"]
 script = ExtResource("1_8qg4y")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(1, 2.34375)
-texture = ExtResource("2_rjbu2")
-
 [node name="dialogue" parent="." instance=ExtResource("3_8qg4y")]
+
+[node name="sprite" type="Node2D" parent="."]
+position = Vector2(0, 20)
+scale = Vector2(1.82, 1.82)
+
+[node name="torso" type="AnimatedSprite2D" parent="sprite"]
+position = Vector2(0, 30)
+scale = Vector2(1.96, 1.96)
+sprite_frames = SubResource("SpriteFrames_bi5pc")
+animation = &"1"
+
+[node name="head" type="AnimatedSprite2D" parent="sprite"]
+position = Vector2(0, -81)
+sprite_frames = SubResource("SpriteFrames_s5t3x")
+animation = &"1"

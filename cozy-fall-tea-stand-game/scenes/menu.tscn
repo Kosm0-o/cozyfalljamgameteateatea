@@ -1,0 +1,613 @@
+[gd_scene load_steps=31 format=3 uid="uid://dlkt186t2hhbv"]
+
+[ext_resource type="Script" uid="uid://cx2gau2skg0rm" path="res://scripts/menu.gd" id="1_mhnvy"]
+[ext_resource type="Texture2D" uid="uid://dhd5i8b0fecdm" path="res://assets/Tree 1.svg" id="2_4ytvr"]
+[ext_resource type="Texture2D" uid="uid://cjfj1tr6m4nyu" path="res://assets/Tree 2.svg" id="3_g3eks"]
+[ext_resource type="Shader" uid="uid://dwm3p4f8a7xig" path="res://scripts/shaders/rays.gdshader" id="4_v86rl"]
+[ext_resource type="FontFile" uid="uid://dowo7sjd80ukq" path="res://assets/MotleyForcesRegular-w1rZ3.ttf" id="5_4ytvr"]
+[ext_resource type="Shader" uid="uid://dpifxr32m6nnq" path="res://scripts/shaders/outline.gdshader" id="5_70i5f"]
+[ext_resource type="Texture2D" uid="uid://dybbo0lqpc2p3" path="res://assets/menutbtnwood.svg" id="5_i6lef"]
+[ext_resource type="FontFile" uid="uid://cy670lf2kfexg" path="res://assets/ScribbleSquad-gw02q.ttf" id="6_70i5f"]
+[ext_resource type="Shader" uid="uid://bb6xc7myont78" path="res://scripts/shaders/eye.gdshader" id="6_g3eks"]
+[ext_resource type="AudioStream" uid="uid://dm5bnvw8ncxb1" path="res://sounds/cozy_puzzle_in-game_3_bpm108.mp3" id="7_v86rl"]
+[ext_resource type="Texture2D" uid="uid://bi7p1bsm4a5td" path="res://assets/Screenshot 2026-09-27 123049.png" id="9_mxgkd"]
+[ext_resource type="Texture2D" uid="uid://xsxg8iooayy6" path="res://assets/Screenshot 2026-09-27 123112.png" id="10_g6gyw"]
+[ext_resource type="Texture2D" uid="uid://b3oh7wn0x11tb" path="res://assets/Screenshot 2026-09-27 123123.png" id="11_3dmrc"]
+[ext_resource type="Texture2D" uid="uid://bkv1n3yfhgkpu" path="res://assets/Screenshot 2026-09-27 123138.png" id="12_81l6r"]
+[ext_resource type="Texture2D" uid="uid://dfg7uyyau8eag" path="res://assets/Screenshot 2026-09-27 123149.png" id="13_rsfmq"]
+[ext_resource type="Texture2D" uid="uid://dthbin7xtnxfs" path="res://assets/Screenshot 2026-09-27 123248.png" id="14_oi1it"]
+[ext_resource type="Texture2D" uid="uid://cvoy0gfdevwre" path="res://assets/Coffee Cup.svg" id="17_g6gyw"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_13sgg"]
+seed = 400
+frequency = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_i6lef"]
+seamless = true
+noise = SubResource("FastNoiseLite_13sgg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_70i5f"]
+shader = ExtResource("4_v86rl")
+shader_parameter/blend_mode = 7
+shader_parameter/noiseTex = SubResource("NoiseTexture2D_i6lef")
+shader_parameter/angle = -0.3
+shader_parameter/position = -0.2
+shader_parameter/spread = 0.298
+shader_parameter/cutoff = -0.192
+shader_parameter/falloff = 0.627
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 15.98
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.0
+shader_parameter/ray_color = Color(1, 0.9, 0.65, 0.8)
+shader_parameter/hdr = false
+shader_parameter/seed = 5.0
+shader_parameter/pixelSizeScale = 1e-07
+shader_parameter/quantize_colors = true
+shader_parameter/color_levels = 16
+shader_parameter/dither = true
+shader_parameter/dither_strength = 0.5
+shader_parameter/opacity = 1.0
+
+[sub_resource type="Gradient" id="Gradient_ca42v"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mj5lg"]
+gradient = SubResource("Gradient_ca42v")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mj5lg"]
+shader = ExtResource("5_70i5f")
+shader_parameter/shader_enabled = false
+shader_parameter/thickness = 6.247
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.993747, 0.837813, 3.85046e-07, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/max_or_add = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_mj5lg"]
+font = ExtResource("6_70i5f")
+font_size = 65
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ufwb2"]
+shader = ExtResource("5_70i5f")
+shader_parameter/shader_enabled = false
+shader_parameter/thickness = 6.247
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.993747, 0.837813, 3.85046e-07, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/max_or_add = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_4ytvr"]
+font = ExtResource("5_4ytvr")
+font_size = 66
+
+[sub_resource type="LabelSettings" id="LabelSettings_v86rl"]
+font = ExtResource("5_4ytvr")
+font_size = 31
+
+[sub_resource type="LabelSettings" id="LabelSettings_ufwb2"]
+font = ExtResource("6_70i5f")
+font_size = 95
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_g3eks"]
+font = ExtResource("5_4ytvr")
+font_size = 111
+font_color = Color(0.927385, 0.731341, 0.687381, 1)
+outline_size = 35
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v86rl"]
+shader = ExtResource("6_g3eks")
+shader_parameter/progress = 1.0
+shader_parameter/eyelid_alpha = 1.0
+shader_parameter/lid_color = Color(0, 0, 0, 1)
+shader_parameter/eye_roundness = 2.483
+
+[node name="menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mhnvy")
+
+[node name="TextureRect13" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 737.0
+offset_top = -254.0
+offset_right = 1116.0
+offset_bottom = 205.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect14" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 507.0
+offset_top = -305.0
+offset_right = 886.0
+offset_bottom = 154.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect15" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 287.0
+offset_top = -326.0
+offset_right = 666.0
+offset_bottom = 133.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect16" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 38.0
+offset_top = -315.0
+offset_right = 417.0
+offset_bottom = 144.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect19" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -271.0
+offset_top = -61.0
+offset_right = 108.0
+offset_bottom = 398.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 31.0
+offset_top = 200.0
+offset_right = 299.0
+offset_bottom = 656.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect4" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 245.0
+offset_top = 195.0
+offset_right = 513.0
+offset_bottom = 651.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect5" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 443.0
+offset_top = 190.0
+offset_right = 711.0
+offset_bottom = 646.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect21" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 675.0
+offset_top = 194.0
+offset_right = 943.0
+offset_bottom = 650.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect22" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 873.0
+offset_top = 189.0
+offset_right = 1141.0
+offset_bottom = 645.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect23" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 838.0
+offset_top = -29.0
+offset_right = 1106.0
+offset_bottom = 427.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect24" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 622.0
+offset_top = -68.0
+offset_right = 890.0
+offset_bottom = 388.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect25" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 325.0
+offset_top = -104.0
+offset_right = 593.0
+offset_bottom = 352.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect31" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 454.0
+offset_top = -102.0
+offset_right = 722.0
+offset_bottom = 354.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect26" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 175.0
+offset_top = -86.0
+offset_right = 443.0
+offset_bottom = 370.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect27" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -11.0
+offset_top = -86.0
+offset_right = 257.0
+offset_bottom = 370.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect28" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 102.0
+offset_top = 22.0
+offset_right = 370.0
+offset_bottom = 478.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect29" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 362.0
+offset_top = 63.0
+offset_right = 630.0
+offset_bottom = 519.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect30" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 507.0
+offset_top = 47.0
+offset_right = 775.0
+offset_bottom = 503.0
+mouse_filter = 2
+texture = ExtResource("2_4ytvr")
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -146.0
+offset_top = 373.0
+offset_right = 233.0
+offset_bottom = 832.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect7" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 145.0
+offset_top = 385.0
+offset_right = 524.0
+offset_bottom = 844.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect8" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 443.0
+offset_top = 396.0
+offset_right = 822.0
+offset_bottom = 855.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect9" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 664.0
+offset_top = 394.0
+offset_right = 1043.0
+offset_bottom = 853.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect10" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 956.0
+offset_top = 380.0
+offset_right = 1335.0
+offset_bottom = 839.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect11" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 967.0
+offset_top = 93.0
+offset_right = 1346.0
+offset_bottom = 552.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect12" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = 974.0
+offset_top = -160.0
+offset_right = 1353.0
+offset_bottom = 299.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect17" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -204.0
+offset_top = -324.0
+offset_right = 175.0
+offset_bottom = 135.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect18" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -241.0
+offset_top = -160.0
+offset_right = 138.0
+offset_bottom = 299.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="TextureRect20" type="TextureRect" parent="."]
+y_sort_enabled = true
+layout_mode = 0
+offset_left = -283.0
+offset_top = 82.0
+offset_right = 96.0
+offset_bottom = 541.0
+mouse_filter = 2
+texture = ExtResource("3_g3eks")
+
+[node name="lightrays" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_70i5f")
+offset_left = -13.0
+offset_top = -235.0
+offset_right = 1142.0
+offset_bottom = 828.0
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_mj5lg")
+
+[node name="playbtn" type="Button" parent="."]
+material = SubResource("ShaderMaterial_mj5lg")
+layout_mode = 0
+offset_left = 835.0
+offset_top = 409.0
+offset_right = 1144.0
+offset_bottom = 502.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 56
+icon = ExtResource("5_i6lef")
+flat = true
+alignment = 2
+
+[node name="Label" type="Label" parent="playbtn"]
+offset_left = 97.0
+offset_top = -1.0
+offset_right = 196.0
+offset_bottom = 83.0
+text = "Play"
+label_settings = SubResource("LabelSettings_mj5lg")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="cup" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 362.0
+offset_top = 234.0
+offset_right = 656.0
+offset_bottom = 471.0
+pivot_offset = Vector2(121.75, 110.5)
+texture = ExtResource("17_g6gyw")
+
+[node name="tutorialbtn" type="Button" parent="."]
+material = SubResource("ShaderMaterial_ufwb2")
+layout_mode = 0
+offset_left = 725.0
+offset_top = 505.0
+offset_right = 1209.0
+offset_bottom = 631.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 56
+icon = ExtResource("5_i6lef")
+flat = true
+alignment = 2
+expand_icon = true
+
+[node name="Panel" type="PanelContainer" parent="tutorialbtn"]
+layout_mode = 0
+offset_left = -1442.0
+offset_top = -331.0
+offset_right = -687.0
+offset_bottom = 128.0
+scale = Vector2(0.935, 0.935)
+
+[node name="MarginContainer" type="MarginContainer" parent="tutorialbtn/Panel"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="tutorialbtn/Panel/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer"]
+layout_mode = 2
+theme_override_constants/separation = 35
+
+[node name="title" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(727.02, 83.74)
+layout_mode = 2
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_4ytvr")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0.205, 0.305)
+layout_mode = 2
+text = "Read the dialogue and find clues to the ingredients. "
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="pic1" type="TextureRect" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("9_mxgkd")
+
+[node name="Label3" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0.205, 0.305)
+layout_mode = 2
+text = "Hover over an ingredient to learn more about it."
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="pic2" type="TextureRect" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("10_g6gyw")
+
+[node name="Label4" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0.205, 0.305)
+layout_mode = 2
+text = "Click on an ingredient to select it and click on the tea cup to insert an ingredient."
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="pic3" type="TextureRect" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("11_3dmrc")
+
+[node name="Label5" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0.205, 0.305)
+layout_mode = 2
+text = "To operate the water machine, hold down one of the temperature buttons."
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="pic4" type="TextureRect" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("12_81l6r")
+
+[node name="Label6" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0.205, 0.305)
+layout_mode = 2
+text = "Click send to give the tea to the customer."
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="pic5" type="TextureRect" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("13_rsfmq")
+
+[node name="Label7" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0.205, 0.305)
+layout_mode = 2
+text = "At the end of the day, buy new ingredients."
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="pic6" type="TextureRect" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+texture = ExtResource("14_oi1it")
+expand_mode = 1
+
+[node name="Label8" type="Label" parent="tutorialbtn/Panel/MarginContainer/ScrollContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0.205, 0.305)
+layout_mode = 2
+text = "Press Esc to go back to the menu."
+label_settings = SubResource("LabelSettings_v86rl")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Label2" type="Label" parent="tutorialbtn"]
+offset_left = 75.0
+offset_top = -1.0
+offset_right = 345.0
+offset_bottom = 121.0
+text = "Tutorial"
+label_settings = SubResource("LabelSettings_ufwb2")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="title" type="Label" parent="."]
+layout_mode = 0
+offset_left = 26.0
+offset_top = 48.0
+offset_right = 823.0
+offset_bottom = 137.0
+text = "A Sip of Autumn"
+label_settings = SubResource("LabelSettings_g3eks")
+
+[node name="eyeshader" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_v86rl")
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
+
+[node name="bgmusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_v86rl")
+volume_db = -13.117
+autoplay = true
+
+[connection signal="pressed" from="playbtn" to="." method="_on_playbtn_pressed"]
+[connection signal="pressed" from="tutorialbtn" to="." method="_on_tutorialbtn_pressed"]

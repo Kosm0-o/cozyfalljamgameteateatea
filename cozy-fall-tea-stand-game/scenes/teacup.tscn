@@ -1,0 +1,97 @@
+[gd_scene load_steps=12 format=3 uid="uid://dcnhodmfardju"]
+
+[ext_resource type="Shader" uid="uid://dpifxr32m6nnq" path="res://scripts/shaders/outline.gdshader" id="1_fhr7q"]
+[ext_resource type="Texture2D" uid="uid://cvoy0gfdevwre" path="res://assets/Coffee Cup.svg" id="2_oc7sh"]
+[ext_resource type="Script" uid="uid://clfbx4fv72lm2" path="res://scripts/teacup.gd" id="3_tn2ed"]
+[ext_resource type="Texture2D" uid="uid://bu1vi2ctnbn7l" path="res://assets/Chai.svg" id="4_q18qc"]
+[ext_resource type="Texture2D" uid="uid://cmpih7j50ed38" path="res://assets/Chamomile.svg" id="5_sidbr"]
+[ext_resource type="Texture2D" uid="uid://cjicrmpayvg58" path="res://assets/Earl Grey.svg" id="6_nlul6"]
+[ext_resource type="Texture2D" uid="uid://cqvfkbrof7pjs" path="res://assets/Hibiscus.svg" id="7_n6d7f"]
+[ext_resource type="Texture2D" uid="uid://cvr6n7pqeyjgx" path="res://assets/Matcha.svg" id="8_ir30u"]
+[ext_resource type="Texture2D" uid="uid://c74xf3k8gxhg2" path="res://assets/Oolong.svg" id="9_2jgt7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_p57ef"]
+shader = ExtResource("1_fhr7q")
+shader_parameter/shader_enabled = false
+shader_parameter/thickness = 6.247
+shader_parameter/ring_count = 16
+shader_parameter/ring_offset = 0.0
+shader_parameter/outline_color = Color(0.993747, 0.837813, 3.85046e-07, 1)
+shader_parameter/border_clipping_fix = true
+shader_parameter/aspect_ratio = 1.0
+shader_parameter/square_border = false
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/max_or_add = false
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jr7tg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_q18qc")
+}],
+"loop": false,
+"name": &"chai",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_sidbr")
+}],
+"loop": false,
+"name": &"chamomile",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_nlul6")
+}],
+"loop": false,
+"name": &"earlgrey",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_n6d7f")
+}],
+"loop": false,
+"name": &"hibiscus",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_ir30u")
+}],
+"loop": false,
+"name": &"matcha",
+"speed": 0.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_2jgt7")
+}],
+"loop": false,
+"name": &"oolong",
+"speed": 0.0
+}]
+
+[node name="teacup" type="Sprite2D"]
+z_index = 3
+material = SubResource("ShaderMaterial_p57ef")
+texture = ExtResource("2_oc7sh")
+
+[node name="btn" type="Button" parent="."]
+offset_left = -104.0
+offset_top = -90.0
+offset_right = 80.0
+offset_bottom = 80.0
+focus_mode = 0
+flat = true
+script = ExtResource("3_tn2ed")
+
+[node name="liquid" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(-15, -49)
+sprite_frames = SubResource("SpriteFrames_jr7tg")
+animation = &"chai"
+
+[connection signal="pressed" from="btn" to="btn" method="_on_pressed"]

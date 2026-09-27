@@ -2,7 +2,7 @@ extends Control
 
 signal dialogue_finished(times : int)
 
-@onready var bg: ColorRect = $ColorRect
+@onready var bg: TextureRect = $ColorRect
 @onready var lbl: Label = $ColorRect/Label
 
 var cam : Camera2D = null
@@ -21,13 +21,17 @@ func _process(delta: float) -> void:
 	
 func _dialogue_tween(text : String):
 	times += 1
-	lbl.size = bg.size
 	lbl.visible_ratio = 0.0
 	lbl.text = text
 	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 1.0, 0.3)
-	tween.tween_property(lbl, "visible_ratio", 1.0, len(text) * 0.035)
+	tween.tween_property(self, "modulate:a", 0.7, 0.3)
+	tween.tween_method(ratio_change, 0.0, 1.0, len(text) * 0.015)
 	await tween.finished
 	await get_tree().create_timer(0.75).timeout
 	dialogue_finished.emit(times)
 	follow_cam = true
+
+func ratio_change(val):
+	lbl.visible_ratio = val
+	$sfx.pitch_scale = randf_range(0.1, 1.5)
+	$sfx.play()

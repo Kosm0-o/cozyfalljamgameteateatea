@@ -3,6 +3,10 @@ extends Button
 var cost : int = 10
 var ingredient
 @onready var ui: CanvasLayer = $"../../.."
+@onready var itemlbl: Label = $Label2
+@onready var costlbl: Label = $Label3
+
+
 var bought : Array[bool] = [
 	false,
 	false,
@@ -10,25 +14,31 @@ var bought : Array[bool] = [
 ]
 @export var item_datas : Dictionary = {
 	"extra": {
-		"name": "EXTRA4",
+		"name": "MINT",
 		"cost": 20,
-		"ingredient": global.INGREDIENTS.EXTRA4
+		"ingredient": global.INGREDIENTS.MINT
 	},
 	"sweetener": {
-		"name": "SWEETENER4",
+		"name": "AGAVENECTAR",
 		"cost": 15,
-		"ingredient": global.INGREDIENTS.SWEETENER4
+		"ingredient": global.INGREDIENTS.AGAVENECTAR
 	},
 	"tea": {
-		"name": "TEA4",
+		"name": "HIBISCUS",
 		"cost": 10,
-		"ingredient": global.INGREDIENTS.TEA4
+		"ingredient": global.INGREDIENTS.HIBISCUS
 	}
 }
 
 func _ready() -> void:
+	material = material.duplicate()
 	ui.refresh_shop_items.connect(_refresh)
 	_refresh(2)
+	mouse_entered.connect(highlight.bind(true))
+	mouse_exited.connect(highlight.bind(false))
+
+func highlight(outline : bool):
+	material.set_shader_parameter("shader_enabled", outline)
 
 func _on_pressed() -> void:
 	if global.money >= cost:
@@ -44,6 +54,7 @@ func _refresh(tab_num : int):
 	else:
 		show()
 	var data : Dictionary = item_datas[item_datas.keys()[tab_num]]
-	text = data.name + "\n cost: " + str(data.cost)
+	itemlbl.text = data.name
+	costlbl.text = "$" + str(data.cost)
 	cost = data.cost
 	ingredient = data.ingredient
